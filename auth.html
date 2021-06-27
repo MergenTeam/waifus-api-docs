@@ -1,0 +1,137 @@
+<html>
+
+<head>
+    <title>Waifus API v1.0 Documents</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Authorization and Permissions</h1>
+        <p class="font-weight-bold">
+            Waifus API authorization rules and permissions to do something
+        </p>
+        <p>
+            As authorization process, we always use "Basic Auth".
+            <br>
+            In headers, add "Authorization" and set to
+            <code>Basic BASE64ENCODEDDATA</code> and BASE64ENCODEDDATA is "email:password"s encoded phrase.
+        </p>
+        <div class="container">
+            <h3>1. <code>/auth/register</code> <samp>REGISTER USER</samp></h3>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td class="font-weight-bold">Method</td>
+                        <td>POST</td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Authorization</td>
+                        <td>Basic Auth or None</td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Body</td>
+                        <td><code>id: Discord ID (Needs authorization)</code><br>or<br><code>email: User email<br>password: User Password</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Return</td>
+                        <td><code><a href="objects.html#success">Success</a> or <a href="objects.html#error">Error</a></code>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Registers user with email and password or only discord ID. Registering with email and password don't need
+                authorization but registering with discord ID needs authorization.</p>
+            <hr />
+            <h3>2. <code>/auth/login</code> <samp>LOGIN</samp></h3>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td class="font-weight-bold">Method</td>
+                        <td>POST</td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Authorization</td>
+                        <td>None</td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Body</td>
+                        <td><code>email: User email<br>password: User Password</code></td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Return</td>
+                        <td><code><a href="objects.html#success">Success</a> and <a href="objects.html#jwtcookie">JWT Cookie</a> or <a href="objects.html#error">Error</a></code>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Returns JWT token to use things on website.</p>
+            <hr />
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Permission</th>
+                        <th>Usage</th>
+                    </tr>
+                    <tr>
+                        <td>REGISTER_USER</td>
+                        <td>Register user with only ID (w/o email and password)</td>
+                    </tr>
+                    <tr>
+                        <td>EDIT_USER</td>
+                        <td>Update user data</td>
+                    </tr>
+                    <tr>
+                        <td>DELETE_USER</td>
+                        <td>Deleting user from database</td>
+                    </tr>
+                    <tr>
+                        <td>GET_USER</td>
+                        <td>Fetching user data</td>
+                    </tr>
+                    <tr>
+                        <td>SEND_POST</td>
+                        <td>Uploading content</td>
+                    </tr>
+                    <tr>
+                        <td>DELETE_POST</td>
+                        <td>Deleting content</td>
+                    </tr>
+                    <tr>
+                        <td>EDIT_POST</td>
+                        <td>Editing content</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="font-weight-bold">
+            Available Documents:
+        </p>
+        <div class="list-group">
+            <a href="index.html" class="list-group-item list-group-item-action">1. Main Page</a>
+            <a href="auth.html" class="list-group-item list-group-item-action active">2. Authorization</a>
+            <a href="users.html" class="list-group-item list-group-item-action">3. User Managment</a>
+            <a href="contents.html" class="list-group-item list-group-item-action">4. Content Managment</a>
+            <a href="support.html" class="list-group-item list-group-item-action">5. Support Us</a>
+            <a href="objects.html" class="list-group-item list-group-item-action">6. Objects</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

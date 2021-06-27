@@ -1,0 +1,167 @@
+<html>
+
+<head>
+    <title>Waifus API v1.0 Documents</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Content Management</h1>
+        <p class="font-weight-bold">
+            Waifus API content management (uploading, editing, getting, deleting) docs
+        </p>
+        <div class="container">
+            <h3>1. <code>/(?):id</code> <samp>GET CONTENT</samp></h3>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td class="font-weight-bold">Method</td>
+                        <td>GET</td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Authorization</td>
+                        <td>None or Basic Auth</td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Optional Params</td>
+                        <td><code>id?: 15 digit content ID (optional)</code></td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Optional Query Params</td>
+                        <td><code>category?: <a href="objects.html#categories">category id</a><br>type?: image/video/gif<br>nsfw?: true/false<br>limit?: int (ONLY PAID ACCOUNTS)</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Return</td>
+                        <td><code><a href="objects.html#content">Content</a> or <a href="objects.html#error">Error</a></code>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Returns random content with specific filters. Limit filter is only for paid accounts. To use limit
+                filter, must be authorizated.</p>
+            <hr />
+            <h3>2. <code>/</code> <samp>POST CONTENT</samp></h3>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td class="font-weight-bold">Method</td>
+                        <td>POST</td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Authorization</td>
+                        <td>Basic Auth</td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Body</td>
+                        <td><code>message_url: string<br>
+                            cdn_url: string<br>
+                            verified: bool<br>
+                            verified_by: string<br>
+                            content_owner: string<br>
+                            category: string<br>
+                            upvotes: int<br>
+                            downvotes: int<br>
+                            type: int<br>
+                            nsfw: int<br>
+                            paid_only: bool<br>
+                            post_date: int<br>
+                            verify_date: int</code></td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Return</td>
+                        <td><code><a href="objects.html#success">Success</a> or <a href="objects.html#error">Error</a></code>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Creates a content with specified data</p>
+            <hr />
+            <h3>3. <code>/:id</code> <samp>EDIT CONTENT</samp></h3>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td class="font-weight-bold">Method</td>
+                        <td>PUT</td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Authorization</td>
+                        <td>Basic Auth</td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Params</td>
+                        <td><code>id: 15 digit content ID</code></td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Body</td>
+                        <td><code><a href="objects.html#data">Data Object</a></code></td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Return</td>
+                        <td><code><a href="objects.html#success">Success</a> or <a href="objects.html#error">Error</a></code>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Edits specified content</p>
+            <hr />
+            <h3>4. <code>/:id</code> <samp>DELETE CONTENT</samp></h3>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td class="font-weight-bold">Method</td>
+                        <td>DELETE</td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Authorization</td>
+                        <td>Basic Auth</td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Params</td>
+                        <td><code>id: 15 Digit Content ID</code></td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Body</td>
+                        <td><code>reason: Reason For Deleting</code></td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Return</td>
+                        <td><code><a href="objects.html#success">Success</a> or <a href="objects.html#error">Error</a></code>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Deletes specified content</p>
+            <hr />
+        </div>
+        <p class="font-weight-bold">
+            Available Documents:
+        </p>
+        <div class="list-group">
+            <a href="index.html" class="list-group-item list-group-item-action">1. Main Page</a>
+            <a href="auth.html" class="list-group-item list-group-item-action">2. Authorization</a>
+            <a href="users.html" class="list-group-item list-group-item-action">3. User Managment</a>
+            <a href="contents.html" class="list-group-item list-group-item-action active">4. Content Managment</a>
+            <a href="support.html" class="list-group-item list-group-item-action">5. Support Us</a>
+            <a href="objects.html" class="list-group-item list-group-item-action">6. Objects</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
